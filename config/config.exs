@@ -35,7 +35,7 @@ config :phoenix, :json_library, Jason
 # Configure icons
 config :phx_icons,
   providers: %{
-    "heroicons" => {Heroicons, "2.2.0"},
+    "heroicons" => {Heroicons, "2.2.0", download: ["inbox"]},
     "heroicons-solid" => {Heroicons, "2.2.0", style: "solid"},
     "heroicons-mini" => {Heroicons, "2.2.0", style: "mini"},
     "heroicons-micro" => {Heroicons, "2.2.0", style: "micro"},
