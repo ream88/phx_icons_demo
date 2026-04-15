@@ -20,6 +20,7 @@ defmodule PhxIconsDemoWeb.ConnCase do
   using do
     quote do
       use PhxIconsDemoWeb, :verified_routes
+
       import Phoenix.ConnTest
       import PhxIconsDemoWeb.ConnCase
       import Plug.Conn

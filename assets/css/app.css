@@ -6,10 +6,6 @@
 @source "../js";
 @source "../../lib/phx_icons_demo_web";
 
-/* A Tailwind plugin that makes "hero-#{ICON}" classes available.
-   The heroicons installation itself is managed by your mix.exs */
-@plugin "../vendor/heroicons";
-
 /* daisyUI Tailwind Plugin. You can update this file by fetching the latest version with:
    curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui.js
    Make sure to look at the daisyUI changelog: https://daisyui.com/docs/changelog/ */
@@ -101,5 +97,16 @@
 
 /* Make LiveView wrapper divs transparent for layout */
 [data-phx-session], [data-phx-teleported-src] { display: contents }
+
+/* Makeup syntax highlighting */
+.highlight .c, .highlight .c1, .highlight .ch, .highlight .cm, .highlight .cs { color: oklch(60% 0 0); font-style: italic }
+.highlight .k, .highlight .kn, .highlight .kd, .highlight .kp { color: oklch(70% 0.15 15) }
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .dl, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .sh { color: oklch(75% 0.1 230) }
+.highlight .na { color: oklch(75% 0.12 260) }
+.highlight .nt { color: oklch(78% 0.14 150) }
+.highlight .nf, .highlight .fm { color: oklch(78% 0.1 290) }
+.highlight .nb, .highlight .bp { color: oklch(78% 0.12 70) }
+.highlight .mi, .highlight .mf, .highlight .mh, .highlight .mo { color: oklch(75% 0.12 260) }
+.highlight .o, .highlight .p { color: oklch(70% 0 0) }
 
 /* This file is for your main application CSS */

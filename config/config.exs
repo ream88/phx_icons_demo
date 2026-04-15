@@ -7,6 +7,13 @@
 # General application configuration
 import Config
 
+alias PhxIcons.Providers.Flagpack
+alias PhxIcons.Providers.Heroicons
+alias PhxIcons.Providers.Lucide
+alias PhxIcons.Providers.Phosphor
+alias PhxIcons.Providers.SimpleIcons
+alias PhxIcons.Providers.Tabler
+
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.25.4",
@@ -24,6 +31,20 @@ config :logger, :default_formatter,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+# Configure icons
+config :phx_icons,
+  providers: %{
+    "heroicons" => {Heroicons, "2.2.0"},
+    "heroicons-solid" => {Heroicons, "2.2.0", style: "solid"},
+    "heroicons-mini" => {Heroicons, "2.2.0", style: "mini"},
+    "heroicons-micro" => {Heroicons, "2.2.0", style: "micro"},
+    "lucide" => {Lucide, "0.469.0"},
+    "tabler" => {Tabler, "3.41.1"},
+    "phosphor" => {Phosphor, "2.0.8"},
+    "simple-icons" => {SimpleIcons, "16.16.0"},
+    "flagpack" => {Flagpack, "2.1.0"}
+  }
 
 # Configure the endpoint
 config :phx_icons_demo, PhxIconsDemoWeb.Endpoint,
