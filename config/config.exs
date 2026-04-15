@@ -43,7 +43,7 @@ config :phx_icons,
     "tabler" => {Tabler, "3.41.1"},
     "phosphor" => {Phosphor, "2.0.8"},
     "simple-icons" => {SimpleIcons, "16.16.0"},
-    "flagpack" => {Flagpack, "2.1.0"}
+    "flagpack" => {Flagpack, "2.1.0", download: :all, aliases: %{"gb" => "gb-ukm"}}
   }
 
 # Configure the endpoint

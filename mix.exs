@@ -47,7 +47,7 @@ defmodule PhxIconsDemo.MixProject do
       {:lazy_html, ">= 0.1.0", only: :test},
       {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
-      {:phx_icons, github: "ream88/phx_icons"},
+      {:phx_icons, path: "../phx_icons"},
       {:styler, "~> 1.0", only: [:dev, :test], runtime: false},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
