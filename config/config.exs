@@ -11,6 +11,7 @@ alias PhxIcons.Providers.Flagpack
 alias PhxIcons.Providers.Heroicons
 alias PhxIcons.Providers.Lucide
 alias PhxIcons.Providers.Phosphor
+alias PhxIcons.Providers.Reicon
 alias PhxIcons.Providers.SimpleIcons
 alias PhxIcons.Providers.Tabler
 
@@ -43,7 +44,10 @@ config :phx_icons,
     "tabler" => {Tabler, "3.41.1"},
     "phosphor" => {Phosphor, "2.0.8"},
     "simple-icons" => {SimpleIcons, "16.16.0"},
-    "flagpack" => {Flagpack, "2.1.0", download: :all, aliases: %{"gb" => "gb-ukm"}}
+    "flagpack" => {Flagpack, "2.1.0", download: :all, aliases: %{"gb" => "gb-ukm"}},
+    # Reicon has no versioned release assets, so pin a git commit SHA
+    "reicon" => {Reicon, "b5eb77801d65f2754d2fbd3837b979be6a4f26d3"},
+    "reicon-filled" => {Reicon, "b5eb77801d65f2754d2fbd3837b979be6a4f26d3", style: "filled"}
   }
 
 # Configure the endpoint
