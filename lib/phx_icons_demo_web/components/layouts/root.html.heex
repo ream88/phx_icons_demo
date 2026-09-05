@@ -8,6 +8,21 @@
     <.live_title default="PhxIcons">
       {assigns[:page_title]}
     </.live_title>
+    <meta
+      name="description"
+      content="One component, seven+ icon libraries. PhxIcons discovers icons in your Phoenix templates, downloads them at compile time, and inlines them as SVG."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url(~p"/")} />
+    <meta property="og:title" content="PhxIcons" />
+    <meta
+      property="og:description"
+      content="One component, seven+ icon libraries. Icons are discovered in your templates, downloaded at compile time, and inlined as SVG."
+    />
+    <meta property="og:image" content={url(~p"/images/og.png")} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
