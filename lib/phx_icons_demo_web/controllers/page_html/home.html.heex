@@ -1,248 +1,414 @@
-<div class="px-4 py-10 sm:px-6 sm:py-20 lg:px-8">
-  <div class="mx-auto max-w-3xl space-y-16">
-    <div>
-      <h1 class="text-[2rem] font-semibold leading-10 tracking-tighter">PhxIcons</h1>
-      <p class="mt-4 leading-7 text-base-content/70">
-        Dynamic icon library for Phoenix LiveView. Use icons from multiple providers —
-        they&#39;re automatically discovered from your templates, downloaded, and inlined as
-        SVG at compile time.
-      </p>
+<nav class="sticky top-0 z-10 border-b border-line bg-paper">
+  <div class="mx-auto flex max-w-[1088px] items-center gap-3.5 px-5 py-[15px] sm:px-10">
+    <a href="#top" class="flex items-center gap-2 text-ink">
+      <span class="inline-block size-6 rounded-full bg-ember"></span>
+      <span class="font-serif text-[17px] font-semibold">PhxIcons</span>
+    </a>
+    <span class="ml-auto rounded-md border border-line bg-white px-2 py-1 font-mono text-xs font-medium text-muted">
+      v{phx_icons_version()}
+    </span>
+    <a
+      href="https://github.com/ream88/phx_icons"
+      class="flex items-center gap-1 text-[13px] font-medium text-ink"
+    >
+      GitHub <.icon name="lucide:arrow-up-right" class="size-3" />
+    </a>
+  </div>
+</nav>
+
+<div id="top" class="mx-auto flex max-w-[1088px] gap-12 px-5 pt-11 sm:px-10">
+  <main class="min-w-0 flex-1 lg:max-w-[760px]">
+    <div class="mb-3 text-xs font-semibold tracking-[.1em] text-ember uppercase">
+      Guide · Getting started
+    </div>
+    <h1 class="mb-3.5 font-serif text-[42px] leading-[1.1] font-semibold tracking-[-.01em] text-pretty">
+      One component.<br />Seven+ icon libraries.
+    </h1>
+    <p class="mb-6 text-base leading-[1.65] text-body text-pretty">
+      Reference an icon by name anywhere in your templates. At compile time PhxIcons finds each
+      usage, downloads those icons, and inlines them as SVG. Your pages ship only the icons they
+      use, and you need neither Node nor an asset pipeline.
+    </p>
+    <div class="mb-8 flex flex-wrap gap-2.5">
+      <a
+        href="#install"
+        class="flex h-11 items-center rounded-lg bg-ink px-5 text-sm font-semibold text-paper"
+      >
+        Get started
+      </a>
+      <button
+        type="button"
+        data-copy={~s({:phx_icons, "~> #{phx_icons_version()}"})}
+        class="flex h-11 cursor-pointer items-center gap-2.5 rounded-lg border border-line bg-white px-4 font-mono text-[13px] font-medium text-body hover:border-ember"
+      >
+        {~s({:phx_icons, "~> #{phx_icons_version()}"})}
+        <.icon name="lucide:copy" class="size-3.5 text-faint" />
+      </button>
     </div>
 
-    <section class="space-y-6">
-      <h2 class="text-lg font-semibold">Installation</h2>
-      <pre class="text-xs overflow-x-auto rounded-box bg-base-300 p-4 highlight"><code><span class="block leading-relaxed"><span class="c1"># mix.exs</span></span><span class="block leading-relaxed"><span class="kd">defp</span> <span class="nf">deps</span> <span class="k">do</span></span><span class="block leading-relaxed">  <span class="p">[</span><span class="p">&#123;</span><span class="ss">:phx_icons</span><span class="p">,</span> <span class="s">&quot;&#126;&gt; 0.1.0&quot;</span><span class="p">&#125;</span><span class="p">]</span></span><span class="block leading-relaxed"><span class="k">end</span></span><span class="block leading-relaxed">
-</span><span class="block leading-relaxed"><span class="c1"># config/config.exs</span></span><span class="block leading-relaxed"><span class="n">config</span> <span class="ss">:phx_icons</span><span class="p">,</span></span><span class="block leading-relaxed">  <span class="ss">providers</span><span class="p">:</span> <span class="p">%&#123;</span></span><span class="block leading-relaxed">    <span class="s">&quot;heroicons&quot;</span> <span class="p">=&gt;</span> <span class="p">&#123;</span><span class="nc">PhxIcons.Providers.Heroicons</span><span class="p">,</span> <span class="s">&quot;2.2.0&quot;</span><span class="p">&#125;</span><span class="p">,</span></span><span class="block leading-relaxed">    <span class="s">&quot;lucide&quot;</span> <span class="p">=&gt;</span> <span class="p">&#123;</span><span class="nc">PhxIcons.Providers.Lucide</span><span class="p">,</span> <span class="s">&quot;0.469.0&quot;</span><span class="p">&#125;</span></span><span class="block leading-relaxed">  <span class="err">&#125;</span></span><span class="block leading-relaxed">
-</span><span class="block leading-relaxed"><span class="c1"># lib/my_app_web/components/core_components.ex</span></span><span class="block leading-relaxed"><span class="kd">defmodule</span> <span class="nc">MyAppWeb.CoreComponents</span> <span class="k">do</span></span><span class="block leading-relaxed">  <span class="kn">use</span> <span class="nc">Phoenix.Component</span></span><span class="block leading-relaxed">  <span class="kn">use</span> <span class="nc">PhxIcons</span></span><span class="block leading-relaxed"><span class="k">end</span></span></code></pre>
-    </section>
+    <h2 id="install" class="mb-1.5 scroll-mt-20 font-serif text-[26px] font-semibold">
+      Installation
+    </h2>
+    <p class="mb-4 text-[14.5px] leading-relaxed text-body">
+      Three steps, without any JavaScript tooling. Click a block to copy it.
+    </p>
+    <ol class="mb-11 flex flex-col gap-3.5 [&>li]:flex [&>li]:gap-4 [&>li>span]:flex [&>li>span]:size-[26px] [&>li>span]:flex-none [&>li>span]:items-center [&>li>span]:justify-center [&>li>span]:rounded-full [&>li>span]:bg-ember [&>li>span]:text-[13px] [&>li>span]:font-semibold [&>li>span]:text-white [&_h3]:mb-2 [&_h3]:text-sm [&_h3]:leading-[26px] [&_h3]:font-semibold">
+      <li>
+        <span>1</span>
+        <div class="min-w-0 flex-1">
+          <h3>Add the dependency</h3>
+          <.code
+            file="mix.exs"
+            copy={~s(defp deps do\n  [\n    {:phx_icons, "~> #{phx_icons_version()}"}\n  ]\nend)}
+          >
+            <pre><span class="k">defp</span> <span class="nf">deps</span> <span class="k">do</span>
+  [&#123;<span class="ss">:phx_icons</span>, <span class="s">"~&gt; {phx_icons_version()}"</span>&#125;]
+<span class="k">end</span></pre>
+          </.code>
+        </div>
+      </li>
+      <li>
+        <span>2</span>
+        <div class="min-w-0 flex-1">
+          <h3>Pick your providers</h3>
+          <.code
+            file="config.exs"
+            copy={
+              ~s(config :phx_icons,\n  providers: %{\n    "heroicons" => {PhxIcons.Providers.Heroicons, "#{version("heroicons")}"},\n    "lucide" => {PhxIcons.Providers.Lucide, "#{version("lucide")}"}\n  })
+            }
+          >
+            <pre><span class="nf">config</span> <span class="ss">:phx_icons</span>,
+  <span class="nf">providers:</span> %&#123;
+    <span class="s">"heroicons"</span> =&gt; &#123;PhxIcons.Providers.Heroicons, <span class="s">"{version("heroicons")}"</span>&#125;,
+    <span class="s">"lucide"</span> =&gt; &#123;PhxIcons.Providers.Lucide, <span class="s">"{version("lucide")}"</span>&#125;
+  &#125;</pre>
+          </.code>
+        </div>
+      </li>
+      <li>
+        <span>3</span>
+        <div class="min-w-0 flex-1">
+          <h3>Hook it into your components</h3>
+          <.code
+            file="core_components.ex"
+            copy="defmodule MyAppWeb.CoreComponents do\n  use Phoenix.Component\n  use PhxIcons\nend"
+          >
+            <pre><span class="k">defmodule</span> <span class="nf">MyAppWeb.CoreComponents</span> <span class="k">do</span>
+  <span class="k">use</span> Phoenix.Component
+  <span class="k">use</span> PhxIcons
+<span class="k">end</span></pre>
+          </.code>
+        </div>
+      </li>
+    </ol>
 
-    <section class="space-y-6">
-      <h2 class="text-lg font-semibold">
-        <a href="https://heroicons.com" class="hover:underline">Heroicons</a>
-      </h2>
-      <p class="text-sm text-base-content/50">
-        Beautiful hand-crafted SVG icons by the makers of Tailwind CSS.
-      </p>
-      <h3 class="text-sm text-base-content/50">Outline</h3>
-      <div class="grid grid-cols-4 gap-3 *:flex *:flex-col *:items-center *:gap-2 *:rounded-box *:bg-base-200 *:p-4 [&_span]:font-mono [&_span]:text-[0.6rem] [&_span]:text-base-content/40">
-        <div><.icon name="heroicons:heart" class="size-6" /><span>heart</span></div>
-        <div><.icon name="heroicons:bell" class="size-6" /><span>bell</span></div>
-        <div><.icon name="heroicons:check" class="size-6" /><span>check</span></div>
-        <div><.icon name="heroicons:arrow-left" class="size-6" /><span>arrow-left</span></div>
-      </div>
-      <pre class="text-xs overflow-x-auto rounded-box bg-base-300 p-4 highlight"><code><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;heroicons:heart&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;heroicons:bell&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;heroicons:check&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;heroicons:arrow-left&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span></code></pre>
-      <h3 class="text-sm text-base-content/50">Mini</h3>
-      <div class="grid grid-cols-4 gap-3 *:flex *:flex-col *:items-center *:gap-2 *:rounded-box *:bg-base-200 *:p-4 [&_span]:font-mono [&_span]:text-[0.6rem] [&_span]:text-base-content/40">
-        <div><.icon name="heroicons-mini:heart" class="size-5" /><span>heart</span></div>
-        <div><.icon name="heroicons-mini:bell" class="size-5" /><span>bell</span></div>
-        <div><.icon name="heroicons-mini:check" class="size-5" /><span>check</span></div>
-        <div>
-          <.icon name="heroicons-mini:arrow-left" class="size-5" /><span>arrow-left</span>
-        </div>
-      </div>
-      <pre class="text-xs overflow-x-auto rounded-box bg-base-300 p-4 highlight"><code><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;heroicons-mini:heart&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-5&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;heroicons-mini:bell&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-5&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;heroicons-mini:check&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-5&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;heroicons-mini:arrow-left&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-5&quot;</span> <span class="p">/&gt;</span></span></code></pre>
-    </section>
+    <h2 id="providers" class="mb-1.5 scroll-mt-20 font-serif text-[26px] font-semibold">
+      Providers
+    </h2>
+    <p class="mb-6 text-[14.5px] leading-relaxed text-body">
+      Prefix the icon name with the provider. Click a snippet to copy it.
+    </p>
 
-    <section class="space-y-6">
-      <h2 class="text-lg font-semibold">
-        <a href="https://lucide.dev" class="hover:underline">Lucide</a>
-      </h2>
-      <p class="text-sm text-base-content/50">
-        Community-driven fork of Feather Icons. Clean, consistent stroke icons.
-      </p>
-      <div class="grid grid-cols-4 gap-3 *:flex *:flex-col *:items-center *:gap-2 *:rounded-box *:bg-base-200 *:p-4 [&_span]:font-mono [&_span]:text-[0.6rem] [&_span]:text-base-content/40">
-        <div><.icon name="lucide:heart" class="size-6" /><span>heart</span></div>
-        <div><.icon name="lucide:bell" class="size-6" /><span>bell</span></div>
-        <div><.icon name="lucide:check" class="size-6" /><span>check</span></div>
-        <div><.icon name="lucide:arrow-left" class="size-6" /><span>arrow-left</span></div>
+    <.provider
+      id="p-heroicons"
+      name="Heroicons"
+      prefix="heroicons"
+      url="https://heroicons.com"
+      version={"v#{version("heroicons")}"}
+    >
+      <:description>Hand-crafted icons by the makers of Tailwind CSS.</:description>
+      <div class="mb-3 flex gap-1.5">
+        <.pill group="hero" value="outline" checked>Outline</.pill>
+        <.pill group="hero" value="mini">Mini</.pill>
       </div>
-      <pre class="text-xs overflow-x-auto rounded-box bg-base-300 p-4 highlight"><code><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;lucide:heart&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;lucide:bell&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;lucide:check&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;lucide:arrow-left&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span></code></pre>
-    </section>
+      <div class="group-has-[[value=mini]:checked]:hidden">
+        <div class="mb-2.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+          <.tile label="heart"><.icon name="heroicons:heart" class="size-6" /></.tile>
+          <.tile label="bell"><.icon name="heroicons:bell" class="size-6" /></.tile>
+          <.tile label="check"><.icon name="heroicons:check" class="size-6" /></.tile>
+          <.tile label="arrow-left"><.icon name="heroicons:arrow-left" class="size-6" /></.tile>
+        </div>
+        <.snippet name="heroicons:heart" class="size-6" />
+      </div>
+      <div class="hidden group-has-[[value=mini]:checked]:block">
+        <div class="mb-2.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+          <.tile label="heart"><.icon name="heroicons-mini:heart" class="size-5" /></.tile>
+          <.tile label="bell"><.icon name="heroicons-mini:bell" class="size-5" /></.tile>
+          <.tile label="check"><.icon name="heroicons-mini:check" class="size-5" /></.tile>
+          <.tile label="arrow-left">
+            <.icon name="heroicons-mini:arrow-left" class="size-5" />
+          </.tile>
+        </div>
+        <.snippet name="heroicons-mini:heart" class="size-5" />
+      </div>
+    </.provider>
 
-    <section class="space-y-6">
-      <h2 class="text-lg font-semibold">
-        <a href="https://tabler.io/icons" class="hover:underline">Tabler</a>
-      </h2>
-      <p class="text-sm text-base-content/50">
-        Over 5,400 free icons with outline and filled styles.
-      </p>
-      <div class="grid grid-cols-4 gap-3 *:flex *:flex-col *:items-center *:gap-2 *:rounded-box *:bg-base-200 *:p-4 [&_span]:font-mono [&_span]:text-[0.6rem] [&_span]:text-base-content/40">
-        <div><.icon name="tabler:heart" class="size-6" /><span>heart</span></div>
-        <div><.icon name="tabler:bell" class="size-6" /><span>bell</span></div>
-        <div><.icon name="tabler:check" class="size-6" /><span>check</span></div>
-        <div><.icon name="tabler:arrow-left" class="size-6" /><span>arrow-left</span></div>
+    <.provider
+      id="p-lucide"
+      name="Lucide"
+      prefix="lucide"
+      url="https://lucide.dev"
+      version={"v#{version("lucide")}"}
+    >
+      <:description>
+        A community fork of Feather with clean, consistent strokes.
+      </:description>
+      <div class="mb-2.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <.tile label="heart"><.icon name="lucide:heart" class="size-6" /></.tile>
+        <.tile label="bell"><.icon name="lucide:bell" class="size-6" /></.tile>
+        <.tile label="check"><.icon name="lucide:check" class="size-6" /></.tile>
+        <.tile label="arrow-left"><.icon name="lucide:arrow-left" class="size-6" /></.tile>
       </div>
-      <pre class="text-xs overflow-x-auto rounded-box bg-base-300 p-4 highlight"><code><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;tabler:heart&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;tabler:bell&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;tabler:check&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;tabler:arrow-left&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span></code></pre>
-    </section>
+      <.snippet name="lucide:heart" class="size-6" />
+    </.provider>
 
-    <section class="space-y-6">
-      <h2 class="text-lg font-semibold">
-        <a href="https://phosphoricons.com" class="hover:underline">Phosphor</a>
-      </h2>
-      <p class="text-sm text-base-content/50">
-        Flexible icon family with 6 weights: thin, light, regular, bold, fill, and duotone.
-      </p>
-      <h3 class="text-sm text-base-content/50">Regular</h3>
-      <div class="grid grid-cols-4 gap-3 *:flex *:flex-col *:items-center *:gap-2 *:rounded-box *:bg-base-200 *:p-4 [&_span]:font-mono [&_span]:text-[0.6rem] [&_span]:text-base-content/40">
-        <div><.icon name="phosphor:heart" class="size-6" /><span>heart</span></div>
-        <div><.icon name="phosphor:bell" class="size-6" /><span>bell</span></div>
-        <div><.icon name="phosphor:check" class="size-6" /><span>check</span></div>
-        <div><.icon name="phosphor:arrow-left" class="size-6" /><span>arrow-left</span></div>
+    <.provider
+      id="p-tabler"
+      name="Tabler"
+      prefix="tabler"
+      url="https://tabler.io/icons"
+      version={"v#{version("tabler")}"}
+    >
+      <:description>Over 5,000 free icons with outline and filled styles.</:description>
+      <div class="mb-2.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <.tile label="star"><.icon name="tabler:star" class="size-6" /></.tile>
+        <.tile label="bell"><.icon name="tabler:bell" class="size-6" /></.tile>
+        <.tile label="check"><.icon name="tabler:check" class="size-6" /></.tile>
+        <.tile label="bolt"><.icon name="tabler:bolt" class="size-6" /></.tile>
       </div>
-      <pre class="text-xs overflow-x-auto rounded-box bg-base-300 p-4 highlight"><code><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;phosphor:heart&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;phosphor:bell&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;phosphor:check&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;phosphor:arrow-left&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span></code></pre>
-      <h3 class="text-sm text-base-content/50">Duotone</h3>
-      <div class="grid grid-cols-4 gap-3 *:flex *:flex-col *:items-center *:gap-2 *:rounded-box *:bg-base-200 *:p-4 [&_span]:font-mono [&_span]:text-[0.6rem] [&_span]:text-base-content/40">
-        <div>
-          <.icon name="phosphor:heart-duotone" class="size-6" /><span>heart-duotone</span>
-        </div>
-        <div><.icon name="phosphor:bell-duotone" class="size-6" /><span>bell-duotone</span></div>
-        <div>
-          <.icon name="phosphor:check-duotone" class="size-6" /><span>check-duotone</span>
-        </div>
-        <div>
-          <.icon name="phosphor:arrow-left-duotone" class="size-6" />
-          <span>
-            arrow-left-duotone
-          </span>
-        </div>
-      </div>
-      <pre class="text-xs overflow-x-auto rounded-box bg-base-300 p-4 highlight"><code><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;phosphor:heart-duotone&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;phosphor:bell-duotone&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;phosphor:check-duotone&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;phosphor:arrow-left-duotone&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span></code></pre>
-    </section>
+      <.snippet name="tabler:star" class="size-6" />
+    </.provider>
 
-    <section class="space-y-6">
-      <h2 class="text-lg font-semibold">
-        <a href="https://simpleicons.org" class="hover:underline">Simple Icons</a>
-      </h2>
-      <p class="text-sm text-base-content/50">
-        Free SVG icons for popular brands. Over 3,000 logos.
-      </p>
-      <div class="grid grid-cols-4 gap-3 *:flex *:flex-col *:items-center *:gap-2 *:rounded-box *:bg-base-200 *:p-4 [&_span]:font-mono [&_span]:text-[0.6rem] [&_span]:text-base-content/40">
-        <div>
-          <.icon name="simple-icons:github" class="size-6 fill-current" /><span>github</span>
+    <.provider
+      id="p-phosphor"
+      name="Phosphor"
+      prefix="phosphor"
+      url="https://phosphoricons.com"
+      version={"v#{version("phosphor")}"}
+    >
+      <:description>
+        Six weights: thin, light, regular, bold, fill, and duotone.
+      </:description>
+      <div class="mb-3 flex gap-1.5">
+        <.pill group="phos" value="regular" checked>Regular</.pill>
+        <.pill group="phos" value="duotone">Duotone</.pill>
+      </div>
+      <div class="group-has-[[value=duotone]:checked]:hidden">
+        <div class="mb-2.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+          <.tile label="heart"><.icon name="phosphor:heart" class="size-6" /></.tile>
+          <.tile label="bell"><.icon name="phosphor:bell" class="size-6" /></.tile>
+          <.tile label="check"><.icon name="phosphor:check" class="size-6" /></.tile>
+          <.tile label="arrow-left"><.icon name="phosphor:arrow-left" class="size-6" /></.tile>
         </div>
-        <div>
-          <.icon name="simple-icons:elixir" class="size-6 fill-current" /><span>elixir</span>
+        <.snippet name="phosphor:heart" class="size-6" />
+      </div>
+      <div class="hidden group-has-[[value=duotone]:checked]:block">
+        <div class="mb-2.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+          <.tile label="heart-duotone">
+            <.icon name="phosphor:heart-duotone" class="size-6" />
+          </.tile>
+          <.tile label="bell-duotone">
+            <.icon name="phosphor:bell-duotone" class="size-6" />
+          </.tile>
+          <.tile label="check-duotone">
+            <.icon name="phosphor:check-duotone" class="size-6" />
+          </.tile>
+          <.tile label="arrow-left-duotone">
+            <.icon name="phosphor:arrow-left-duotone" class="size-6" />
+          </.tile>
         </div>
-        <div>
-          <.icon name="simple-icons:docker" class="size-6 fill-current" /><span>docker</span>
-        </div>
-        <div>
+        <.snippet name="phosphor:heart-duotone" class="size-6" />
+      </div>
+    </.provider>
+
+    <.provider
+      id="p-simple"
+      name="Simple Icons"
+      prefix="simple-icons"
+      url="https://simpleicons.org"
+      version={"v#{version("simple-icons")}"}
+    >
+      <:description>
+        Brand logos. Add
+        <code class="rounded bg-sand px-1.5 py-px font-mono text-xs font-medium">
+          fill-current
+        </code>
+        because they are filled shapes.
+      </:description>
+      <div class="mb-2.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <.tile label="github">
+          <.icon name="simple-icons:github" class="size-6 fill-current" />
+        </.tile>
+        <.tile label="elixir">
+          <.icon name="simple-icons:elixir" class="size-6 fill-current" />
+        </.tile>
+        <.tile label="docker">
+          <.icon name="simple-icons:docker" class="size-6 fill-current" />
+        </.tile>
+        <.tile label="tailwindcss">
           <.icon name="simple-icons:tailwindcss" class="size-6 fill-current" />
-          <span>
-            tailwindcss
-          </span>
-        </div>
+        </.tile>
       </div>
-      <pre class="text-xs overflow-x-auto rounded-box bg-base-300 p-4 highlight"><code><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;simple-icons:github&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6</span> <span class="s">fill-current&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;simple-icons:elixir&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6</span> <span class="s">fill-current&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;simple-icons:docker&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6</span> <span class="s">fill-current&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;simple-icons:tailwindcss&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6</span> <span class="s">fill-current&quot;</span> <span class="p">/&gt;</span></span></code></pre>
-    </section>
+      <.snippet name="simple-icons:github" class="size-6 fill-current" />
+    </.provider>
 
-    <section class="space-y-6">
-      <h2 class="text-lg font-semibold">
-        <a href="https://flagpack.xyz" class="hover:underline">Flagpack</a>
-      </h2>
-      <p class="text-sm text-base-content/50">
-        Beautiful open-source flag icons. 250+ country flags as SVG.
-      </p>
-      <div class="grid grid-cols-4 gap-3 *:flex *:flex-col *:items-center *:gap-2 *:rounded-box *:bg-base-200 *:p-4 [&_span]:font-mono [&_span]:text-[0.6rem] [&_span]:text-base-content/40">
-        <div><.icon name="flagpack:us" class="h-6 w-auto" /><span>us</span></div>
-        <div><.icon name="flagpack:gb" class="h-6 w-auto" /><span>gb</span></div>
-        <div><.icon name="flagpack:de" class="h-6 w-auto" /><span>de</span></div>
-        <div><.icon name="flagpack:at" class="h-6 w-auto" /><span>at</span></div>
+    <.provider
+      id="p-flagpack"
+      name="Flagpack"
+      prefix="flagpack"
+      url="https://flagpack.xyz"
+      version={"v#{version("flagpack")}"}
+    >
+      <:description>
+        Country flags. You can alias names, e.g. <code class="rounded bg-sand px-1.5 py-px font-mono text-xs font-medium">"gb" =&gt; "gb-ukm"</code>.
+      </:description>
+      <div class="mb-2.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <.tile label="de" tint={false}><.icon name="flagpack:de" class="h-6 w-auto" /></.tile>
+        <.tile label="at" tint={false}><.icon name="flagpack:at" class="h-6 w-auto" /></.tile>
+        <.tile label="gb" tint={false}><.icon name="flagpack:gb" class="h-6 w-auto" /></.tile>
+        <.tile label="us" tint={false}><.icon name="flagpack:us" class="h-6 w-auto" /></.tile>
       </div>
-      <pre class="text-xs overflow-x-auto rounded-box bg-base-300 p-4 highlight"><code><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;flagpack:us&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;h-6</span> <span class="s">w-auto&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="c">&lt;!-- "gb" is an alias for "gb-ukm", configured via aliases: %&#123;"gb" =&gt; "gb-ukm"&#125; --&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;flagpack:gb&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;h-6</span> <span class="s">w-auto&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;flagpack:de&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;h-6</span> <span class="s">w-auto&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;flagpack:at&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;h-6</span> <span class="s">w-auto&quot;</span> <span class="p">/&gt;</span></span></code></pre>
-    </section>
+      <.snippet name="flagpack:de" class="h-6 w-auto" />
+    </.provider>
 
-    <section class="space-y-6">
-      <h2 class="text-lg font-semibold">
-        <a href="https://reicon.dev" class="hover:underline">Reicon</a>
-      </h2>
-      <p class="text-sm text-base-content/50">
-        2,600+ modern icons in outline and filled styles.
-      </p>
-      <h3 class="text-sm text-base-content/50">Outline</h3>
-      <div class="grid grid-cols-4 gap-3 *:flex *:flex-col *:items-center *:gap-2 *:rounded-box *:bg-base-200 *:p-4 [&_span]:font-mono [&_span]:text-[0.6rem] [&_span]:text-base-content/40">
-        <div><.icon name="reicon:heart" class="size-6" /><span>heart</span></div>
-        <div><.icon name="reicon:bell" class="size-6" /><span>bell</span></div>
-        <div><.icon name="reicon:check" class="size-6" /><span>check</span></div>
-        <div><.icon name="reicon:arrow-left" class="size-6" /><span>arrow-left</span></div>
+    <.provider
+      id="p-reicon"
+      name="Reicon"
+      prefix="reicon"
+      url="https://reicon.dev"
+      version={"#{version("reicon")}"}
+    >
+      <:description>One icon set in outline and filled styles.</:description>
+      <div class="mb-3 flex gap-1.5">
+        <.pill group="rei" value="outline" checked>Outline</.pill>
+        <.pill group="rei" value="filled">Filled</.pill>
       </div>
-      <pre class="text-xs overflow-x-auto rounded-box bg-base-300 p-4 highlight"><code><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;reicon:heart&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;reicon:bell&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;reicon:check&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;reicon:arrow-left&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span></code></pre>
-      <h3 class="text-sm text-base-content/50">Filled</h3>
-      <div class="grid grid-cols-4 gap-3 *:flex *:flex-col *:items-center *:gap-2 *:rounded-box *:bg-base-200 *:p-4 [&_span]:font-mono [&_span]:text-[0.6rem] [&_span]:text-base-content/40">
-        <div><.icon name="reicon-filled:heart" class="size-6" /><span>heart</span></div>
-        <div><.icon name="reicon-filled:bell" class="size-6" /><span>bell</span></div>
-        <div><.icon name="reicon-filled:check" class="size-6" /><span>check</span></div>
-        <div>
-          <.icon name="reicon-filled:arrow-left" class="size-6" /><span>arrow-left</span>
+      <div class="group-has-[[value=filled]:checked]:hidden">
+        <div class="mb-2.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+          <.tile label="heart"><.icon name="reicon:heart" class="size-6" /></.tile>
+          <.tile label="bell"><.icon name="reicon:bell" class="size-6" /></.tile>
+          <.tile label="check"><.icon name="reicon:check" class="size-6" /></.tile>
+          <.tile label="arrow-left"><.icon name="reicon:arrow-left" class="size-6" /></.tile>
         </div>
+        <.snippet name="reicon:heart" class="size-6" />
       </div>
-      <pre class="text-xs overflow-x-auto rounded-box bg-base-300 p-4 highlight"><code><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;reicon-filled:heart&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;reicon-filled:bell&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;reicon-filled:check&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;reicon-filled:arrow-left&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span></code></pre>
-    </section>
+      <div class="hidden group-has-[[value=filled]:checked]:block">
+        <div class="mb-2.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+          <.tile label="heart"><.icon name="reicon-filled:heart" class="size-6" /></.tile>
+          <.tile label="bell"><.icon name="reicon-filled:bell" class="size-6" /></.tile>
+          <.tile label="check"><.icon name="reicon-filled:check" class="size-6" /></.tile>
+          <.tile label="arrow-left">
+            <.icon name="reicon-filled:arrow-left" class="size-6" />
+          </.tile>
+        </div>
+        <.snippet name="reicon-filled:heart" class="size-6" />
+      </div>
+    </.provider>
 
-    <section class="space-y-6">
-      <h2 class="text-lg font-semibold">Sizes</h2>
-      <div class="flex items-end gap-8">
-        <div class="flex flex-col items-center gap-2">
-          <.icon name="heroicons:heart" class="size-4" />
-          <span class="text-xs text-base-content/50">size-4</span>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-          <.icon name="heroicons:heart" class="size-6" />
-          <span class="text-xs text-base-content/50">size-6</span>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-          <.icon name="heroicons:heart" class="size-8" />
-          <span class="text-xs text-base-content/50">size-8</span>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-          <.icon name="heroicons:heart" class="size-12" />
-          <span class="text-xs text-base-content/50">size-12</span>
-        </div>
+    <h2 id="sizing" class="mb-1.5 scroll-mt-20 font-serif text-[26px] font-semibold">
+      Sizing &amp; color
+    </h2>
+    <p class="mb-3.5 text-[14.5px] leading-relaxed text-body">
+      Icons inherit <code class="rounded bg-sand px-1.5 py-px font-mono text-xs font-medium">currentColor</code>,
+      so you size and tint them with plain Tailwind utilities.
+    </p>
+    <div class="mb-3.5 overflow-hidden rounded-[14px] border border-line bg-white">
+      <div class="flex items-end justify-center gap-10 bg-[repeating-linear-gradient(45deg,#FCFAF6_0_10px,#FAF7F2_10px_20px)] p-[30px] [&>div]:flex [&>div]:flex-col [&>div]:items-center [&>div]:gap-2 [&_span]:font-mono [&_span]:text-[10.5px] [&_span]:font-medium [&_span]:text-faint">
+        <div><.icon name="lucide:heart" class="size-4" /><span>size-4</span></div>
+        <div><.icon name="lucide:heart" class="size-6" /><span>size-6</span></div>
+        <div><.icon name="lucide:heart" class="size-8" /><span>size-8</span></div>
+        <div><.icon name="lucide:heart" class="size-12" /><span>size-12</span></div>
       </div>
-      <pre class="text-xs overflow-x-auto rounded-box bg-base-300 p-4 highlight"><code><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;heroicons:heart&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-4&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;heroicons:heart&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-6&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;heroicons:heart&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-8&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;heroicons:heart&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-12&quot;</span> <span class="p">/&gt;</span></span></code></pre>
-    </section>
+      <div class="flex items-center justify-center gap-10 border-t border-sand px-[30px] py-[26px]">
+        <.icon name="lucide:heart" class="size-8 text-red-600" />
+        <.icon name="lucide:star" class="size-8 text-yellow-600" />
+        <.icon name="lucide:zap" class="size-8 text-green-600" />
+        <.icon name="lucide:bell" class="size-8 text-purple-600" />
+      </div>
+    </div>
+    <.snippet name="heroicons:heart" class="size-8 text-red-500" />
 
-    <section class="space-y-6">
-      <h2 class="text-lg font-semibold">Colors</h2>
-      <div class="flex items-center gap-8">
-        <div><.icon name="lucide:heart" class="size-8 text-red-500" /></div>
-        <div><.icon name="lucide:star" class="size-8 text-yellow-500" /></div>
-        <div><.icon name="tabler:rocket" class="size-8 text-green-500" /></div>
-        <div><.icon name="phosphor:lightning" class="size-8 text-purple-500" /></div>
+    <h2 id="animations" class="mt-11 mb-1.5 scroll-mt-20 font-serif text-[26px] font-semibold">
+      Animations
+    </h2>
+    <p class="mb-3.5 text-[14.5px] leading-relaxed text-body">
+      Because the SVG is inlined, Tailwind's transition and animation utilities apply to it directly. Hover a tile to try one.
+    </p>
+    <div class="mb-3.5 flex flex-wrap gap-2 [&>div]:flex [&>div]:min-w-[130px] [&>div]:flex-1 [&>div]:flex-col [&>div]:items-center [&>div]:gap-[11px] [&>div]:rounded-[10px] [&>div]:border [&>div]:border-line [&>div]:bg-white [&>div]:px-2 [&>div]:pt-[22px] [&>div]:pb-3.5 [&_span]:font-mono [&_span]:text-[10.5px] [&_span]:font-medium [&_span]:text-faint">
+      <div class="group">
+        <.icon
+          name="lucide:heart"
+          class="size-[30px] transition-all group-hover:scale-125 group-hover:text-red-600"
+        />
+        <span>scale + color</span>
       </div>
-      <pre class="text-xs overflow-x-auto rounded-box bg-base-300 p-4 highlight"><code><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;lucide:heart&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-8</span> <span class="s">text-red-500&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;lucide:star&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-8</span> <span class="s">text-yellow-500&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;tabler:rocket&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-8</span> <span class="s">text-green-500&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;phosphor:lightning&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-8</span> <span class="s">text-purple-500&quot;</span> <span class="p">/&gt;</span></span></code></pre>
-    </section>
+      <div class="group">
+        <.icon name="lucide:bell" class="size-[30px] motion-safe:group-hover:animate-ping" />
+        <span>animate-ping</span>
+      </div>
+      <div class="group">
+        <.icon
+          name="lucide:star"
+          class="size-[30px] group-hover:text-yellow-600 motion-safe:group-hover:animate-spin"
+        />
+        <span>animate-spin</span>
+      </div>
+      <div class="group">
+        <.icon
+          name="lucide:arrow-left"
+          class="size-[30px] group-hover:text-blue-600 motion-safe:group-hover:animate-pulse"
+        />
+        <span>animate-pulse</span>
+      </div>
+    </div>
+    <div class="mb-14">
+      <.snippet
+        name="heroicons:heart"
+        class="size-8 hover:text-red-500 hover:scale-125 transition-all"
+      />
+    </div>
+  </main>
 
-    <section class="space-y-6">
-      <h2 class="text-lg font-semibold">Animations</h2>
-      <div class="flex items-center gap-8">
-        <div class="flex flex-col items-center gap-2">
-          <.icon
-            name="heroicons:heart"
-            class="size-8 hover:text-red-500 hover:scale-125 transition-all cursor-pointer"
-          />
-          <span class="text-xs text-base-content/50">scale + color</span>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-          <.icon name="lucide:bell" class="size-8 hover:animate-ping cursor-pointer" />
-          <span class="text-xs text-base-content/50">ping</span>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-          <.icon
-            name="tabler:star"
-            class="size-8 hover:animate-spin hover:text-yellow-500 cursor-pointer"
-          />
-          <span class="text-xs text-base-content/50">spin</span>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-          <.icon
-            name="phosphor:arrow-left"
-            class="size-8 hover:animate-pulse hover:text-blue-500 cursor-pointer"
-          />
-          <span class="text-xs text-base-content/50">pulse</span>
-        </div>
-      </div>
-      <pre class="text-xs overflow-x-auto rounded-box bg-base-300 p-4 highlight"><code><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;heroicons:heart&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-8</span> <span class="s">hover:text-red-500</span> <span class="s">hover:scale-125</span> <span class="s">transition-all&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;lucide:bell&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-8</span> <span class="s">hover:animate-ping&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;tabler:star&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-8</span> <span class="s">hover:animate-spin</span> <span class="s">hover:text-yellow-500&quot;</span> <span class="p">/&gt;</span></span><span class="block leading-relaxed"><span class="p">&lt;</span><span class="nf">.icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;phosphor:arrow-left&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;size-8</span> <span class="s">hover:animate-pulse</span> <span class="s">hover:text-blue-500&quot;</span> <span class="p">/&gt;</span></span></code></pre>
-    </section>
-  </div>
+  <aside class="sticky top-[76px] hidden w-[200px] flex-none self-start pt-2 lg:block">
+    <div class="mb-3 text-[11px] font-semibold tracking-[.1em] text-faint uppercase">
+      On this page
+    </div>
+    <div class="flex flex-col gap-[9px] border-l border-line pl-3.5 text-[13px] [&>a]:text-muted [&>a.sub]:pl-3 [&>a.sub]:text-faint">
+      <a
+        href="#top"
+        class="-ml-[15px] border-l-2 border-ember pl-[13px] font-semibold text-ember!"
+      >
+        Overview
+      </a>
+      <a href="#install">Installation</a>
+      <a href="#providers">Providers</a>
+      <a href="#p-heroicons" class="sub">Heroicons</a>
+      <a href="#p-lucide" class="sub">Lucide</a>
+      <a href="#p-tabler" class="sub">Tabler</a>
+      <a href="#p-phosphor" class="sub">Phosphor</a>
+      <a href="#p-simple" class="sub">Simple Icons</a>
+      <a href="#p-flagpack" class="sub">Flagpack</a>
+      <a href="#p-reicon" class="sub">Reicon</a>
+      <a href="#sizing">Sizing &amp; color</a>
+      <a href="#animations">Animations</a>
+    </div>
+  </aside>
+</div>
+
+<footer class="mx-auto flex max-w-[1088px] flex-wrap items-center gap-x-[18px] gap-y-2 border-t border-line px-5 py-5 text-[12.5px] text-muted sm:px-10">
+  <span class="font-serif text-[13px] font-semibold text-ink">PhxIcons</span>
+  <span>MIT License</span>
+  <a href="https://github.com/ream88/phx_icons">GitHub</a>
+  <a href="https://hex.pm/packages/phx_icons">Hex.pm</a>
+  <span class="basis-full font-mono text-[11px] font-medium text-faint sm:ml-auto sm:basis-auto">
+    built for Phoenix LiveView
+  </span>
+</footer>
+
+<div
+  id="copy-toast"
+  hidden
+  class="fixed bottom-6 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-[13px] font-medium text-paper shadow-[0_8px_24px_rgba(38,34,28,.25)]"
+>
+  <.icon name="lucide:check" class="size-3.5 text-[#7DD87D]" /> Copied to clipboard
 </div>
