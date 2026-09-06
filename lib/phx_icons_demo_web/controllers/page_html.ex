@@ -91,8 +91,8 @@ defmodule PhxIconsDemoWeb.PageHTML do
       <span>
         &lt;<span class="text-[#F0B27A]">.icon</span> <span class="text-[#9CC4E4]">name</span>=<span class="text-[#B5CEA8]">"{@name}"</span> <span class="text-[#9CC4E4]">class</span>=<span class="text-[#B5CEA8]">"{@class}"</span> /&gt;
       </span>
-      <span class="ml-auto flex items-center gap-1 pl-4 text-[11px] whitespace-nowrap text-code-dim">
-        <.icon name="lucide:copy" class="size-3" /> copy
+      <span class="ml-auto pl-4 text-code-dim">
+        <.icon name="lucide:copy" class="size-3" />
       </span>
     </button>
     """
