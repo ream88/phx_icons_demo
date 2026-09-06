@@ -361,11 +361,121 @@
         <span>animate-pulse</span>
       </div>
     </div>
-    <div class="mb-14">
+    <div class="mb-0">
       <.snippet
         name="heroicons:heart"
         class="size-8 hover:text-red-500 hover:scale-125 transition-all"
       />
+    </div>
+
+    <h2 id="download" class="mt-11 mb-1.5 scroll-mt-20 font-serif text-[26px] font-semibold">
+      Pre-downloading icons
+    </h2>
+    <p class="mb-3.5 text-[14.5px] leading-relaxed text-body">
+      You can also pre-download all icons from a provider, a specific list, or extra icons in
+      addition to the icons discovered in your codebase.
+    </p>
+    <.code
+      file="config.exs"
+      copy={
+        ~s|config :phx_icons,\n  providers: %{\n    # Download all icons upfront\n    "heroicons" => {PhxIcons.Providers.Heroicons, "#{version("heroicons")}", download: :all},\n    # Download a specific set\n    "lucide" => {PhxIcons.Providers.Lucide, "#{version("lucide")}", download: ~w(search check x)},\n    # Download discovered icons plus these extra icons\n    "tabler" => {PhxIcons.Providers.Tabler, "#{version("tabler")}", download: {:also, ~w(settings user)}}\n  }|
+      }
+    >
+      <pre><span class="nf">config</span> <span class="ss">:phx_icons</span>,
+  <span class="nf">providers:</span> %&#123;
+    <span class="c"># Download all icons upfront</span>
+    <span class="s">"heroicons"</span> =&gt; &#123;PhxIcons.Providers.Heroicons, <span class="s">"{version("heroicons")}"</span>, <span class="nf">download:</span> <span class="ss">:all</span>&#125;,
+    <span class="c"># Download a specific set</span>
+    <span class="s">"lucide"</span> =&gt; &#123;PhxIcons.Providers.Lucide, <span class="s">"{version("lucide")}"</span>, <span class="nf">download:</span> <span class="s">~w(search check x)</span>&#125;,
+    <span class="c"># Download discovered icons plus these extra icons</span>
+    <span class="s">"tabler"</span> =&gt; &#123;PhxIcons.Providers.Tabler, <span class="s">"{version("tabler")}"</span>, <span class="nf">download:</span> &#123;<span class="ss">:also</span>, <span class="s">~w(settings user)</span>&#125;&#125;
+  &#125;</pre>
+    </.code>
+
+    <h2 id="custom" class="mt-11 mb-1.5 scroll-mt-20 font-serif text-[26px] font-semibold">
+      Custom providers
+    </h2>
+    <p class="mb-3.5 text-[14.5px] leading-relaxed text-body">
+      Implement the
+      <code class="rounded bg-sand px-1.5 py-px font-mono text-xs font-medium">
+        PhxIcons.Provider
+      </code>
+      behaviour.
+    </p>
+    <div class="mb-3.5">
+      <.code
+        file="custom_icons.ex"
+        copy={
+          ~s|defmodule MyApp.Providers.CustomIcons do\n  @behaviour PhxIcons.Provider\n\n  @impl true\n  def release_url(version) do\n    "https://github.com/org/repo/archive/refs/tags/v\#{version}.zip"\n  end\n\n  @impl true\n  def svg_path(version, icon_name, _opts) do\n    "repo-\#{version}/icons/\#{icon_name}.svg"\n  end\nend|
+        }
+      >
+        <pre><span class="k">defmodule</span> <span class="nf">MyApp.Providers.CustomIcons</span> <span class="k">do</span>
+  <span class="ss">@behaviour</span> PhxIcons.Provider
+
+  <span class="ss">@impl</span> <span class="k">true</span>
+  <span class="k">def</span> <span class="nf">release_url</span>(version) <span class="k">do</span>
+    <span class="s">"https://github.com/org/repo/archive/refs/tags/v#&#123;version&#125;.zip"</span>
+  <span class="k">end</span>
+
+  <span class="ss">@impl</span> <span class="k">true</span>
+  <span class="k">def</span> <span class="nf">svg_path</span>(version, icon_name, _opts) <span class="k">do</span>
+    <span class="s">"repo-#&#123;version&#125;/icons/#&#123;icon_name&#125;.svg"</span>
+  <span class="k">end</span>
+<span class="k">end</span></pre>
+      </.code>
+    </div>
+    <p class="mb-3.5 text-[14.5px] leading-relaxed text-body">
+      Optionally implement
+      <code class="rounded bg-sand px-1.5 py-px font-mono text-xs font-medium">transform/1</code>
+      to rewrite each SVG before it's stored, e.g. replacing hardcoded fills with <code class="rounded bg-sand px-1.5 py-px font-mono text-xs font-medium">currentColor</code>. This is how the built-in Reicon provider does it:
+    </p>
+    <div class="mb-3.5">
+      <.code
+        file="custom_icons.ex"
+        copy={
+          ~s|@impl true\ndef transform(svg) do\n  String.replace(svg, ~s(fill="#000000"), ~s(fill="currentColor"))\nend|
+        }
+      >
+        <pre><span class="ss">@impl</span> <span class="k">true</span>
+<span class="k">def</span> <span class="nf">transform</span>(svg) <span class="k">do</span>
+  String.replace(svg, <span class="s">~s(fill="#000000")</span>, <span class="s">~s(fill="currentColor")</span>)
+<span class="k">end</span></pre>
+      </.code>
+    </div>
+    <p class="mb-3.5 text-[14.5px] leading-relaxed text-body">
+      Then register it in your config.
+    </p>
+    <.code
+      file="config.exs"
+      copy={
+        ~s|config :phx_icons,\n  providers: %{\n    "custom" => {MyApp.Providers.CustomIcons, "1.0.0"}\n  }|
+      }
+    >
+      <pre><span class="nf">config</span> <span class="ss">:phx_icons</span>,
+  <span class="nf">providers:</span> %&#123;
+    <span class="s">"custom"</span> =&gt; &#123;MyApp.Providers.CustomIcons, <span class="s">"1.0.0"</span>&#125;
+  &#125;</pre>
+    </.code>
+
+    <h2 id="testing" class="mt-11 mb-1.5 scroll-mt-20 font-serif text-[26px] font-semibold">
+      Testing
+    </h2>
+    <p class="mb-3.5 text-[14.5px] leading-relaxed text-body">
+      PhxIcons ships with test helpers to assert icons are rendered.
+    </p>
+    <div class="mb-14">
+      <.code
+        file="core_components_test.exs"
+        copy={
+          ~s|import PhxIcons.Test\n\nhtml = render_component(&MyAppWeb.CoreComponents.icon/1, name: "heroicons:heart")\nassert_icon(html, "heroicons:heart")\nrefute_icon(html, "heroicons:x-mark")|
+        }
+      >
+        <pre><span class="k">import</span> PhxIcons.Test
+
+html = <span class="nf">render_component</span>(&amp;MyAppWeb.CoreComponents.icon/1, <span class="nf">name:</span> <span class="s">"heroicons:heart"</span>)
+<span class="nf">assert_icon</span>(html, <span class="s">"heroicons:heart"</span>)
+<span class="nf">refute_icon</span>(html, <span class="s">"heroicons:x-mark"</span>)</pre>
+      </.code>
     </div>
   </main>
 
@@ -391,6 +501,9 @@
       <a href="#p-reicon" class="sub">Reicon</a>
       <a href="#sizing">Sizing &amp; color</a>
       <a href="#animations">Animations</a>
+      <a href="#download">Pre-downloading icons</a>
+      <a href="#custom">Custom providers</a>
+      <a href="#testing">Testing</a>
     </div>
   </aside>
 </div>
