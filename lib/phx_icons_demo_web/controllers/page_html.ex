@@ -14,6 +14,19 @@ defmodule PhxIconsDemoWeb.PageHTML do
 
   def phx_icons_version, do: to_string(Application.spec(:phx_icons, :vsn))
 
+  @doc "Module and version of a configured provider."
+  def provider_config(prefix) do
+    {mod, version} =
+      :phx_icons
+      |> Application.fetch_env!(:providers)
+      |> Map.fetch!(prefix)
+      |> Tuple.to_list()
+      |> Enum.take(2)
+      |> List.to_tuple()
+
+    {inspect(mod), version}
+  end
+
   attr :id, :string, required: true
   attr :name, :string, required: true
   attr :prefix, :string, required: true
@@ -23,6 +36,15 @@ defmodule PhxIconsDemoWeb.PageHTML do
   slot :inner_block, required: true
 
   def provider(assigns) do
+    {mod, version} = provider_config(assigns.prefix)
+
+    assigns =
+      assign(assigns,
+        mod: mod,
+        version: version,
+        config: ~s("#{assigns.prefix}" => {#{mod}, "#{version}"})
+      )
+
     ~H"""
     <section id={@id} class="group mb-10 scroll-mt-20">
       <div class="mb-1 flex flex-wrap items-baseline gap-3">
@@ -38,6 +60,19 @@ defmodule PhxIconsDemoWeb.PageHTML do
         </a>
       </div>
       <p class="mb-3 text-[13.5px] text-body">{render_slot(@description)}</p>
+      <button
+        type="button"
+        data-copy={@config}
+        class="mb-3 flex w-full cursor-pointer items-center rounded-[10px] bg-ink px-[18px] py-3 text-left font-mono text-[13px] leading-relaxed text-code"
+      >
+        <span>
+          <span class="text-[#B5CEA8]">"{@prefix}"</span>
+          =&gt; &#123;{@mod}, <span class="text-[#B5CEA8]">"{@version}"</span>&#125;
+        </span>
+        <span class="ml-auto flex items-center gap-1 pl-4 text-[10px] font-medium whitespace-nowrap text-code-dim">
+          config.exs <.icon name="lucide:copy" class="size-3" />
+        </span>
+      </button>
       {render_slot(@inner_block)}
     </section>
     """
